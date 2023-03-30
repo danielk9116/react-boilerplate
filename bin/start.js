@@ -42,10 +42,10 @@ exec(
                 fs.createWriteStream(`${process.argv[2]}/${filesToCopy[i]}`)
             );
         }
-        
+
         // npm will remove the .gitignore file when the package is installed, therefore it cannot be copied, locally and needs to be downloaded. Use your raw .gitignore once you pushed your code to GitHub. 
         https.get(
-            "https://github.com/youarebju/minimal-reactjs-boilerplate/blob/main/.gitignore",
+            "https://github.com/danielk9116/react-boilerplate/blob/main/.gitignore",
             (res) => {
                 res.setEncoding("utf8");
                 let body = "";
