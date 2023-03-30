@@ -1,0 +1,51 @@
+/*@import url('normalize.css');*/
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$screen-sm: 640px;
+$screen-md: 768px;
+$screen-lg: 1024px;
+$screen-xl: 1280px;
+$screen-2xl: 1536px;
+
+:root {
+  --desc-gray: #464853;
+  --mark-red: #F45B69;
+}
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.container {
+  max-width: 1500px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.pink--mark {
+  color: var(--mark-red);
+}
+
+.size-16x9 {
+  padding: 28.125% 0;
+}
