@@ -4,8 +4,7 @@ const path = require("path");
 const https = require("https");
 const { exec } = require("child_process");
 const packageJson = require("../package.json");
-const scripts = `"start": "webpack server --mode=development --open --hot", "build": "webpack --mode=production"`;
-const babel = `"babel": ${JSON.stringify(packageJson.babel)}`;
+const scripts = `"start": "webpack server --mode=development --open --hot",\n "build": "webpack --mode=production"`;
 const getDeps = (deps) =>
     Object.entries(deps)
         .map((dep) => `${dep[0]}@${dep[1]}`)
@@ -33,10 +32,9 @@ exec(
                 .replace(
                     '"test": "echo \\"Error: no test specified\\" && exit 1"',
                     scripts)
-                .replace('"keywords": []', babel);
             fs.writeFile(packageJSON, data, (err2) => err2 || true);
         });
-        const filesToCopy = ["webpack.config.js"];
+        const filesToCopy = ["webpack.config.js","tailwind.config.js","postcss.config.js","babel.config.json"];
         for (let i = 0; i < filesToCopy.length; i += 1) {
             fs.createReadStream(path.join(__dirname, `../${filesToCopy[i]}`)).pipe(
                 fs.createWriteStream(`${process.argv[2]}/${filesToCopy[i]}`)
@@ -45,7 +43,7 @@ exec(
 
         // npm will remove the .gitignore file when the package is installed, therefore it cannot be copied, locally and needs to be downloaded. Use your raw .gitignore once you pushed your code to GitHub. 
         https.get(
-            "https://github.com/danielk9116/react-boilerplate/blob/main/.gitignore",
+            "https://github.com/danielk9116/react-boilerplate/blob/master/.gitignore",
             (res) => {
                 res.setEncoding("utf8");
                 let body = "";
@@ -65,7 +63,8 @@ exec(
             }
         );
         console.log("npm init -- done\n");
-
+        
+        console.log("start to install node modules\n");
         // installing dependencies console.log("Installing deps -- it might take a few minutes.."); 
         const devDeps = getDeps(packageJson.devDependencies);
         const deps = getDeps(packageJson.dependencies);
