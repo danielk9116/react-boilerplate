@@ -34,7 +34,7 @@ exec(
                     scripts)
             fs.writeFile(packageJSON, data, (err2) => err2 || true);
         });
-        const filesToCopy = ["webpack.config.js","tailwind.config.js","postcss.config.js","babel.config.json"];
+        const filesToCopy = ["webpack.config.js","tailwind.config.js"];
         for (let i = 0; i < filesToCopy.length; i += 1) {
             fs.createReadStream(path.join(__dirname, `../${filesToCopy[i]}`)).pipe(
                 fs.createWriteStream(`${process.argv[2]}/${filesToCopy[i]}`)
