@@ -1,11 +1,11 @@
 import React from 'react'
 
-export default function Error() {
+export default function Error () {
   const styleSheet = {
-    height:'100vh',
-    display:'flex',
-    alignItems:'center',
-    justifyContent:'center'
+    height: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 
   return (

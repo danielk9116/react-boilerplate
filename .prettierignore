@@ -1,0 +1,7 @@
+package-lock.json
+
+*.min.*
+
+node_modules/
+
+*.html

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import Images from '../assets/images';
-import { motion } from "framer-motion";
+import Images from '../assets/images'
+import { motion } from 'framer-motion'
 
-export default function Home() {
-  const [loading, setLoading] = useState(false);
+export default function Home () {
+  const [loading, setLoading] = useState(false)
 
   return (
     <main>
@@ -11,10 +11,9 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: .5 }}
+        transition={{ duration: 0.5 }}
       >
         <h1>Hello World</h1>
       </motion.div>
     </main>)
-
 }
