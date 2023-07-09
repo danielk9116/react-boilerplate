@@ -2,10 +2,32 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const PostCSSLoader = {
+  loader: 'postcss-loader',
+  options: {
+    postcssOptions: {
+      plugins: {
+        'postcss-import': {},
+        'tailwindcss/nesting': {},
+        tailwindcss: {},
+        autoprefixer: {},
+      },
+    },
+  },
+};
+
+const CSSModuleLoader = {
+  loader: 'css-loader',
+  options: {
+    modules: true,
+    importLoaders: 2,
+  },
+};
+
 module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js',
+    filename: 'bundle.[hash].js',
     publicPath: '/',
   },
   devServer: {
@@ -14,7 +36,7 @@ module.exports = {
   },
   resolve: {
     modules: [path.join(__dirname, 'src'), 'node_modules'],
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    extensions: ['.js', '.jsx'],
     alias: {
       react: path.join(__dirname, 'node_modules', 'react'),
     },
@@ -40,25 +62,7 @@ module.exports = {
       },
       {
         test: /\.(scss|css)$/,
-        use: [
-          // 'style-loader',
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                plugins: {
-                  'postcss-import': {},
-                  'tailwindcss/nesting': {},
-                  tailwindcss: {},
-                  autoprefixer: {},
-                },
-              },
-            },
-          },
-        ],
+        use: ['style-loader', CSSModuleLoader, PostCSSLoader, 'sass-loader'],
       },
     ],
   },

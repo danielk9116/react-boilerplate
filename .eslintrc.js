@@ -19,5 +19,6 @@ module.exports = {
   rules: {
     'no-unused-vars': 'off',
     'linebreak-style': 'off',
+    'react/jsx-filename-extension': 'off',
   },
 };
